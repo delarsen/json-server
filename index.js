@@ -1,44 +1,90 @@
+/* eslint-disable no-console */
 import fetch from 'node-fetch';
-const apiBase = 'http://localhost:3000';
+import * as readline from 'readline';
 
-const Endpoints = {
-    users: '/users',
+const usersEndpoint = 'http://localhost:3000/users';
+
+const firstNames = [
+  'Joe',
+  'Paul',
+  'John',
+  'Arsen',
+  'Ashot',
+  'Michael',
+  'Sam',
+  'Jack',
+];
+const lastNames = [
+  'Elsher',
+  'Solace',
+  'Delikatny',
+  'Levine',
+  'Thatcher',
+  'Raven',
+  'Hansley',
+  'Bardot',
+];
+
+const getUsers = async () => {
+  const response = await fetch(usersEndpoint);
+  const users = await response.json();
+
+  return users;
+};
+
+const addRandomUsers = async (numberOfUsers) => {
+  for (let i = 1; i <= numberOfUsers; i++) {
+    const user = generateUser(i);
+    await addUser(user);
+  }
+};
+
+const addUser = async (user) => {
+  await fetch(usersEndpoint, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json;charset=utf-8' },
+    body: JSON.stringify(user),
+  });
+};
+
+const randomDate = () => {
+  const start = new Date(2003, 10, 20);
+  const end = new Date(2008, 10, 20);
+
+  return new Date(
+    start.getTime() + Math.random() * (end.getTime() - start.getTime())
+  );
+};
+
+const generateUser = (indx) => {
+  const firstNameRandomIndx = Math.floor(Math.random() * firstNames.length);
+  const lastNameRandomIndx = Math.floor(Math.random() * lastNames.length);
+
+  return {
+    id: indx,
+    firstName: firstNames[firstNameRandomIndx],
+    lastName: lastNames[lastNameRandomIndx],
+    birthDate: randomDate(),
   };
+};
 
+const main = async () => {
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
 
+  rl.question('Enter number: ', async (number) => {
+    const numberOfUsers = Number.parseInt(number);
+    if (isNaN(numberOfUsers)) {
+      throw Error('Not a number!!');
+    }
 
-// const addUser = async (user) => {
-//     const newUserResponse = await fetch(`${apiBase}${Endpoints.users}`, {
-//       method: 'POST',
-//       headers: { 'Content-Type': 'application/json;charset=utf-8' },
-//       body: JSON.stringify(user),
-//     });
+    await addRandomUsers(numberOfUsers);
 
-    
-const firstNames = ["Joe", "Mary", "John", "Arsen", "Ashot", "Michael", "Sam", "Jack"]
-const lastNames = ["Elsher", "Solace", "Delikatny", "Levine", "Thatcher", "Raven", "Hansley", "Bardot"]
-const randFirstName = Math.floor(Math.random() * firstNames.length);
-const randLastName = Math.floor(Math.random() * lastNames.length);
-// console.log(firstNames[randFirstName]);
-// console.log(lastNames[randLastName]);
+    console.log(await getUsers());
+    rl.close();
+  });
+};
 
-
-
-function randomDate() {
-    let startDate = new Date(2003,10,20).getTime();;
-    let endDate = new Date(2008,10,20).getTime(); 
-    let spaceBeetween = (endDate - startDate)
-    let timestamp = Math.round(Math.random() * spaceBeetween);
-    timestamp += startDate;
-    return new Date(timestamp);
-}
-
-let dateOfBirth = randomDate();
-
-const user = {
-    firstName: firstNames[randFirstName],
-    lastName: lastNames[randLastName],
-    birthDate: dateOfBirth,
-} 
-
-console.log(user);
+main().then();

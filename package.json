@@ -4,26 +4,27 @@
   "type": "module",
   "description": "",
   "main": "index.js",
-  
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-    
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/delarsen/json-server.git"
-    
   },
   "author": "a.delikatny",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/delarsen/json-server/issues"
-    
   },
-  {
   "homepage": "https://github.com/delarsen/json-server#readme",
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.25.2",
+    "json-server": "^0.17.0",
+    "prettier": "2.4.1"
+  },
   "dependencies": {
     "node-fetch": "^3.0.0"
   }
-  
-  
+}
