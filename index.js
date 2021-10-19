@@ -1,4 +1,4 @@
-//import fetch from 'node-fetch';
+import fetch from 'node-fetch';
 const apiBase = 'http://localhost:3000';
 
 const Endpoints = {

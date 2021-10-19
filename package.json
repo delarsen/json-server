@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/delarsen/json-server/issues"
   },
-  "homepage": "https://github.com/delarsen/json-server#readme"
+  "homepage": "https://github.com/delarsen/json-server#readme",
+  "dependencies": {
+    "node-fetch": "^3.0.0"
+  }
 }
