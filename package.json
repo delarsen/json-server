@@ -1,28 +1,29 @@
 {
   "name": "json-server",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "index.js",
+  
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+    
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/delarsen/json-server.git"
+    
   },
   "author": "a.delikatny",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/delarsen/json-server/issues"
+    
   },
+  {
   "homepage": "https://github.com/delarsen/json-server#readme",
   "dependencies": {
     "node-fetch": "^3.0.0"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.15.7",
-    "@babel/core": "^7.15.8",
-    "@babel/node": "^7.15.8",
-    "@babel/preset-env": "^7.15.8"
   }
-}
+  
+  
