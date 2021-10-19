@@ -9,17 +9,15 @@ const randLastName = Math.floor(Math.random() * lastNames.length);
 
 
 function randomDate() {
-    let startDate = new Date(2003,10,20).getTime();
-    let endDate = new Date(2008,10,20).getTime();
+    let startDate = new Date(2003,10,20).getTime();;
+    let endDate = new Date(2008,10,20).getTime(); 
     let spaceBeetween = (endDate - startDate)
     let timestamp = Math.round(Math.random() * spaceBeetween);
     timestamp += startDate;
     return new Date(timestamp);
-
 }
 
 let dateOfBirth = randomDate();
-
 
 const user = {
     firstName: firstNames[randFirstName],
