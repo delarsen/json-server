@@ -1,4 +1,20 @@
-//import fetch from 'node-fetch';error!+ async/await /realize number and date from real time
+//import fetch from 'node-fetch';
+const apiBase = 'http://localhost:3000';
+
+const Endpoints = {
+    users: '/users',
+  };
+
+
+
+// const addUser = async (user) => {
+//     const newUserResponse = await fetch(`${apiBase}${Endpoints.users}`, {
+//       method: 'POST',
+//       headers: { 'Content-Type': 'application/json;charset=utf-8' },
+//       body: JSON.stringify(user),
+//     });
+
+    
 const firstNames = ["Joe", "Mary", "John", "Arsen", "Ashot", "Michael", "Sam", "Jack"]
 const lastNames = ["Elsher", "Solace", "Delikatny", "Levine", "Thatcher", "Raven", "Hansley", "Bardot"]
 const randFirstName = Math.floor(Math.random() * firstNames.length);
