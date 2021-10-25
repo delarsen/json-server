@@ -1,90 +1,23 @@
-/* eslint-disable no-console */
-import fetch from 'node-fetch';
-import * as readline from 'readline';
+/* eslint-disable import/extensions */
+/* eslint-disable comma-dangle */
+/* eslint-disable implicit-arrow-linebreak */
+import { addUser } from './api/user-api.js';
+import { getRandomUser } from './generators/user-generator.js';
+import { getRandomIntInclusive, rangeInclusive, sleep } from './util/util.js';
+import * as reader from './reader.js';
 
-const usersEndpoint = 'http://localhost:3000/users';
-
-const firstNames = [
-  'Joe',
-  'Paul',
-  'John',
-  'Arsen',
-  'Ashot',
-  'Michael',
-  'Sam',
-  'Jack',
-];
-const lastNames = [
-  'Elsher',
-  'Solace',
-  'Delikatny',
-  'Levine',
-  'Thatcher',
-  'Raven',
-  'Hansley',
-  'Bardot',
-];
-
-const getUsers = async () => {
-  const response = await fetch(usersEndpoint);
-  const users = await response.json();
-
-  return users;
-};
-
-const addRandomUsers = async (numberOfUsers) => {
-  for (let i = 1; i <= numberOfUsers; i++) {
-    const user = generateUser(i);
-    await addUser(user);
-  }
-};
-
-const addUser = async (user) => {
-  await fetch(usersEndpoint, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json;charset=utf-8' },
-    body: JSON.stringify(user),
-  });
-};
-
-const randomDate = () => {
-  const start = new Date(2003, 10, 20);
-  const end = new Date(2008, 10, 20);
-
-  return new Date(
-    start.getTime() + Math.random() * (end.getTime() - start.getTime())
-  );
-};
-
-const generateUser = (indx) => {
-  const firstNameRandomIndx = Math.floor(Math.random() * firstNames.length);
-  const lastNameRandomIndx = Math.floor(Math.random() * lastNames.length);
-
-  return {
-    id: indx,
-    firstName: firstNames[firstNameRandomIndx],
-    lastName: lastNames[lastNameRandomIndx],
-    birthDate: randomDate(),
-  };
-};
-
-const main = async () => {
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
-
-  rl.question('Enter number: ', async (number) => {
-    const numberOfUsers = Number.parseInt(number);
-    if (isNaN(numberOfUsers)) {
-      throw Error('Not a number!!');
+// add from 10 to 30 random users
+const main = async (usersCount) => {
+  Promise.all(
+    rangeInclusive(1, usersCount).map((_) => addUser(getRandomUser(13, 18)))
+  ).then(async () => {
+    for (let i = 0; i < 5; i++) {
+      await sleep(100);
+      await reader.main();
     }
-
-    await addRandomUsers(numberOfUsers);
-
-    console.log(await getUsers());
-    rl.close();
   });
 };
 
-main().then();
+const usersCount = parseInt(getRandomIntInclusive(30, 50));
+
+main(usersCount).then();

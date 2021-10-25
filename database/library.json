@@ -1,0 +1,43 @@
+{
+  "users": [
+    {
+      "firstName": "Harry",
+      "lastName": "Harry",
+      "birthDate": "2008-06-03T05:56:25.192Z",
+      "id": 12
+    },
+    {
+      "firstName": "Charlie",
+      "lastName": "Leo",
+      "birthDate": "2004-05-10T05:56:27.566Z",
+      "id": 20
+    },
+    {
+      "firstName": "Jorge",
+      "lastName": "Isla",
+      "birthDate": "2006-04-18T05:56:27.844Z",
+      "id": 23
+    },
+    {
+      "firstName": "Paul",
+      "lastName": "Ella",
+      "birthDate": "2003-02-19T06:56:27.292Z",
+      "id": 25
+    },
+    {
+      "firstName": "Arsen",
+      "lastName": "Ava",
+      "birthDate": "2006-01-08T06:56:28.305Z",
+      "id": 28
+    },
+    {
+      "firstName": "Isla",
+      "lastName": "Oliver",
+      "birthDate": "2008-10-16T05:56:28.446Z",
+      "id": 30
+    }
+  ],
+  "books": [],
+  "authors": [],
+  "bookReservations": []
+}
